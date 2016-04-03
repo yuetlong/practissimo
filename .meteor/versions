@@ -18,6 +18,7 @@ ddp-client@1.2.3
 ddp-common@1.2.3
 ddp-server@1.2.4
 deps@1.0.10
+dhtmlx:scheduler@0.0.2
 diff-sequence@1.0.3
 ecmascript@0.4.1
 ecmascript-runtime@0.2.8

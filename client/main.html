@@ -9,6 +9,7 @@
       {{> welcome}}
       {{> scheduler}}
   {{/if}}
+  {{> countdown}}
 
 </body>
 
@@ -37,5 +38,22 @@
         </div>
         <div class="dhx_cal_data">
         </div>
+    </div>
+</template>
+
+<template name="countdown">
+    <div id="clock"></div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default" id="btn-pause">
+            <input type="radio" name="options" id="option2" autocomplete="off">
+            <i class="glyphicon glyphicon-pause"></i>
+            Pause
+        </label>
+
+        <label class="btn btn-default active" id="btn-resume">
+            <input type="radio" name="options" id="option2" autocomplete="off" checked>
+            <i class="glyphicon glyphicon-play"></i>
+            Resume
+        </label>
     </div>
 </template>

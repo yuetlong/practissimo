@@ -18,7 +18,7 @@ Template.hello.onCreated(function helloOnCreated() {
 Template.hello.helpers({
   counter() {
     return Template.instance().counter.get();
-  },
+  }
 });
 
 Template.hello.events({
@@ -45,4 +45,37 @@ Template.scheduler.onRendered(function(){
 Template.scheduler.onDestroyed(function(){
   scheduler.meteorStop();
   scheduler.clearAll();
+});
+
+Template.countdown.onRendered(function(){
+
+    var clock = $("#clock");
+    var ev;
+
+   function initializeCountdown(timeStamp){
+       clock.countdown(new Date(timeStamp), function(event) {
+           if(event.offset.hours != 0){
+               $(this).html(event.strftime('%-H hour%!H:s; %-M minute%!M:s; %-S second%!S:s;'));
+           }
+           else if (event.offset.minutes != 0){
+               $(this).html(event.strftime('%-M minute%!M:s; %-S second%!S:s;'));
+           }
+           else{
+               $(this).html(event.strftime('%-S second%!S:s;'));
+           }
+           ev = event;
+       });
+   }
+
+    $('#btn-pause').click(function() {
+        clock.countdown('pause');
+    });
+
+    $('#btn-resume').click(function() {
+        initializeCountdown(new Date().valueOf() +
+            1000 * (ev.offset.hours*60*60 + ev.offset.minutes*60 + ev.offset.seconds));
+        clock.countdown('resume');
+    });
+
+    initializeCountdown(new Date().valueOf() + 65 * 1000);
 });

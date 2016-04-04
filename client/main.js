@@ -7,7 +7,7 @@ import './main.html';
 // runs when the client starts up
 Meteor.startup(function() {
   //Init dhtmlxScheduler.
-  scheduler.init("scheduler_here", new Date());
+  scheduler.init("scheduler_here", new Date(),"month");
 
   //Init dhtmlxScheduler data adapter.
   scheduler.meteor(Tasks);

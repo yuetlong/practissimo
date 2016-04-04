@@ -79,3 +79,7 @@ Template.countdown.onRendered(function(){
 
     initializeCountdown(new Date().valueOf() + 65 * 1000);
 });
+
+Template.clockpicker.onRendered(function(){
+    $('.clockpicker').clockpicker();
+});

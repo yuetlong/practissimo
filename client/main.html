@@ -5,11 +5,13 @@
 <body>
 
   {{> hello}} {{> loginButtons}}
+
   {{#if currentUser}}
       {{> welcome}}
       {{> scheduler}}
   {{/if}}
-  {{> countdown}}
+
+  {{> clockpicker}}
 
 </body>
 
@@ -55,5 +57,14 @@
             <i class="glyphicon glyphicon-play"></i>
             Resume
         </label>
+    </div>
+</template>
+
+<template name="clockpicker">
+    <div class="input-group clockpicker">
+        <input type="text" class="form-control" value="09:30">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-time"></span>
+    </span>
     </div>
 </template>

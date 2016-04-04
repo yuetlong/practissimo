@@ -24,3 +24,5 @@ dhtmlx:scheduler-data
 accounts-ui
 accounts-password
 hilios:jquery.countdown
+twbs:bootstrap
+andrasph:clockpicker

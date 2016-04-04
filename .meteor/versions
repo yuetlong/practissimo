@@ -3,6 +3,7 @@ accounts-password@1.1.6
 accounts-ui@1.1.7
 accounts-ui-unstyled@1.1.10
 allow-deny@1.0.2
+andrasph:clockpicker@0.0.2
 autopublish@1.0.5
 autoupdate@1.2.6
 babel-compiler@6.5.2
@@ -80,6 +81,7 @@ standard-minifier-js@1.0.4
 templating@1.1.7
 templating-tools@1.0.2
 tracker@1.0.11
+twbs:bootstrap@3.3.6
 ui@1.0.9
 underscore@1.0.6
 url@1.0.7

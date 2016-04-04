@@ -1,7 +1,19 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import {Tasks} from '../imports/api/tasks.js';
 
 import './main.html';
+
+// runs when the client starts up
+Meteor.startup(function() {
+  //Init dhtmlxScheduler.
+  scheduler.init("scheduler_here", new Date());
+
+  //Init dhtmlxScheduler data adapter.
+  scheduler.meteor(Tasks);
+  //or
+  scheduler.meteor(Tasks.find(/*[anything]*/), Tasks);
+});
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0

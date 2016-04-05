@@ -3,8 +3,13 @@
 </head>
 
 <body>
+    {{#animate type="rubberBand" delay="200"}}
+        <h1 class="logo">Practicissimo</h1>
+    {{/animate}}
+    {{#transition in="zoomIn" out="zoomOut"}}
   {{> Template.dynamic template=currentPage}}
-  {{> loginwrapper}}
+    {{/transition}}
+        {{> loginwrapper}}
 </body>
 
 <template name="welcome">

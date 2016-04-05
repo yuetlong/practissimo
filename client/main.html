@@ -4,7 +4,7 @@
 
 <body>
 
-  {{> hello}} {{> loginButtons}}
+  {{> hello}} {{>main_menu}} {{> loginwrapper}}
   {{#if currentUser}}
       {{> welcome}}
       {{> scheduler}}
@@ -16,9 +16,14 @@
     <h1>Welcome to Practissimo , {{username}} !</h1>
 </template>
 
+<template name="loginwrapper">
+    <div class="login">
+        {{> loginButtons}}
+    </div>
+</template>
+
+<!-- Nani the fuck why does it get mad when i remove the entire thing-->
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
 </template>
 
 <template name="scheduler">
@@ -33,9 +38,25 @@
             <div class="dhx_cal_tab" name="month_tab" style="right:204px;"></div>
             <!--<div class="dhx_cal_tab" name="year_tab" style="right:140px;"></div> -->
         </div>
-        <div class="dhx_cal_header">
-        </div>
-        <div class="dhx_cal_data">
-        </div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
     </div>
 </template>
+
+<template name="main_menu">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+        <p>
+            <input type="button" class="btn-custom btn-block" id="start" value="Start" />
+        </p>
+        <p>
+            <input type="button" class="btn-custom btn-block" id="schedule" value="Schedule" />
+        </p>
+        <p>
+            <input type="button" class="btn-custom btn-block" id="progress" value="Progress" />
+        </p>
+        <p>
+            <input type="button" class="btn-custom btn-block" id="optons" value="Options" />
+        </p>
+    </div>
+</template>
+

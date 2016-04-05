@@ -3,13 +3,8 @@
 </head>
 
 <body>
-
-  {{> hello}} {{>main_menu}} {{> loginwrapper}}
-  {{#if currentUser}}
-      {{> welcome}}
-      {{> scheduler}}
-  {{/if}}
-
+  {{> Template.dynamic template=currentPage}}
+  {{> loginwrapper}}
 </body>
 
 <template name="welcome">
@@ -41,22 +36,41 @@
         <div class="dhx_cal_header"></div>
         <div class="dhx_cal_data"></div>
     </div>
+    <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
 </template>
 
 <template name="main_menu">
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
         <p>
-            <input type="button" class="btn-custom btn-block" id="start" value="Start" />
+            <input type="button" class="btn btn-custom btn-block" id="start" value="Start" data-page="startPractice"/>
         </p>
         <p>
-            <input type="button" class="btn-custom btn-block" id="schedule" value="Schedule" />
+            <input type="button" class="btn btn-custom btn-block" id="schedule" value="Schedule" data-page="scheduler"/>
         </p>
         <p>
-            <input type="button" class="btn-custom btn-block" id="progress" value="Progress" />
+            <input type="button" class="btn btn-custom btn-block" id="progress" value="Progress" data-page="showProgress"/>
         </p>
         <p>
-            <input type="button" class="btn-custom btn-block" id="optons" value="Options" />
+            <input type="button" class="btn btn-custom btn-block" id="optons" value="Options" />
         </p>
     </div>
 </template>
 
+<template name="startPractice">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+        <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+        </div>
+    </template>
+
+<template name="showSchedule">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+
+    </div>
+
+</template>
+
+<template name="showProgress">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+        <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+    </div>
+</template>

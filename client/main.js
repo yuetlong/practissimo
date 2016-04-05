@@ -1,8 +1,10 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import {Session } from 'meteor/session';
 import { Tasks } from '../imports/api/tasks.js';
 import '../imports/startup/accounts-config.js';
 import './main.html';
+
 
 Template.welcome.helpers({
   username: function(){
@@ -18,7 +20,7 @@ Template.hello.onCreated(function helloOnCreated() {
 Template.hello.helpers({
   counter() {
     return Template.instance().counter.get();
-  },
+  }
 });
 
 Template.hello.events({
@@ -46,3 +48,31 @@ Template.scheduler.onDestroyed(function(){
   scheduler.meteorStop();
   scheduler.clearAll();
 });
+
+Template.main_menu.events({
+  'click #start'(event){
+    //event.preventDefault();
+    Session.set('showButtons', true);
+    Session.set('newWindow', false);
+  }
+
+});
+
+Template.main_menu.helpers({
+  showButtons : true,
+  newWindow: false
+});
+
+Session.setDefault('page', 'main_menu');
+
+Template.body.helpers({
+  currentPage: function(page){
+    return Session.get('page')
+  }
+})
+
+Template.body.events({
+  'click .btn': function(event, template){
+    Session.set('page', event.currentTarget.getAttribute('data-page'))
+  }
+})

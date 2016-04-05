@@ -1,10 +1,9 @@
 <head>
-  <title>simple</title>
+  <title>Practissimo: Music Practice Tool</title>
 </head>
-
 <body>
 
-  {{> hello}} {{>main_menu}} {{> loginwrapper}}
+{{>main_menu}} {{> loginwrapper}}
   {{#if currentUser}}
       {{> welcome}}
       {{> scheduler}}
@@ -12,20 +11,22 @@
 
 </body>
 
+<!-- Welcome text - "Let's give a warm welcome to our dear user~!" -->
 <template name="welcome">
     <h1>Welcome to Practissimo , {{username}} !</h1>
 </template>
 
+<!-- Sign in button with dropdown - "Do I know you?" -->
 <template name="loginwrapper">
-    <div class="login">
-        {{> loginButtons}}
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <div class="login">
+          {{> loginButtons}}
+      </div>
     </div>
 </template>
 
-<!-- Nani the fuck why does it get mad when i remove the entire thing-->
-<template name="hello">
-</template>
-
+<!-- Schedule - Let's put in a date! -->
 <template name="scheduler">
     <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:500px;'>
         <div class="dhx_cal_navline">
@@ -43,20 +44,12 @@
     </div>
 </template>
 
+<!-- Buttons for the main page - "What are you planning to do today?" -->
 <template name="main_menu">
-    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
-        <p>
-            <input type="button" class="btn-custom btn-block" id="start" value="Start" />
-        </p>
-        <p>
-            <input type="button" class="btn-custom btn-block" id="schedule" value="Schedule" />
-        </p>
-        <p>
-            <input type="button" class="btn-custom btn-block" id="progress" value="Progress" />
-        </p>
-        <p>
-            <input type="button" class="btn-custom btn-block" id="optons" value="Options" />
-        </p>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <p><input type="button" class="btn-custom btn-block" id="start" value="Start"/></p>
+        <p><input type="button" class="btn-custom btn-block" id="schedule" value="Schedule"/></p>
+        <p><input type="button" class="btn-custom btn-block" id="progress" value="Progress" /></p>
+        <p><input type="button" class="btn-custom btn-block" id="optons" value="Options" /></p>
     </div>
 </template>
-

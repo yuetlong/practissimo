@@ -1,5 +1,5 @@
 <head>
-  <title>Practissimo: Music Practice Tool</title>
+  <title>simple</title>
 </head>
 
 <body>
@@ -8,8 +8,9 @@
     {{/animate}}
     {{#transition in="zoomIn" out="zoomOut"}}
   {{> Template.dynamic template=currentPage}}
+
     {{/transition}}
-        {{> loginwrapper}}
+
 </body>
 
 <!-- Welcome text - "Let's give a warm welcome to our dear user~!" -->
@@ -21,10 +22,14 @@
 <template name="loginwrapper">
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-      <div class="login">
-          {{> loginButtons}}
-      </div>
+        <div class="login">
+            {{> loginButtons}}
+        </div>
     </div>
+</template>
+
+<!-- Nani the fuck why does it get mad when i remove the entire thing-->
+<template name="hello">
 </template>
 
 <!-- Schedule - Let's put in a date! -->
@@ -42,18 +47,29 @@
         </div>
         <div class="dhx_cal_header"></div>
         <div class="dhx_cal_data"></div>
+
     </div>
     <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+
 </template>
 
-<!-- Buttons for the main page - "What are you planning to do today?" -->
 <template name="main_menu">
+
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-        <p><input type="button" class="btn btn-custom btn-block" id="start" value="Start"/></p>
-        <p><input type="button" class="btn btn-custom btn-block" id="schedule" value="Schedule"/></p>
-        <p><input type="button" class="btn btn-custom btn-block" id="progress" value="Progress" /></p>
-        <p><input type="button" class="btn btn-custom btn-block" id="optons" value="Options" /></p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="start" value="Start" data-page="startPractice"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="schedule" value="Schedule" data-page="scheduler"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="progress" value="Progress" data-page="showProgress"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="optons" value="Options" />
+        </p>
     </div>
+    {{> loginwrapper}}
 </template>
 
 <template name="startPractice">
@@ -64,7 +80,9 @@
 
 <template name="showSchedule">
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+
     </div>
+
 </template>
 
 <template name="showProgress">

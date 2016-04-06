@@ -30,13 +30,16 @@ body{
   /* KIT: Looking at following links for transitioning between bigger and smaller size browsers */
   /* https://bootstrapbay.com/blog/css-transitions-buttons */
   /* https://css-tricks.com/almanac/properties/t/transition/ */
-  .btn-custom{
+  .btn-custom {
       background: #e592a2;
       color: #ffffff;
       display: block;
       font-size: 70px;
       overflow: hidden;
+  }
 
+.login {
+    position: fixed;
 
       /*Rounded Corners*/
       -webkit-border-radius: 15px;

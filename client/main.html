@@ -3,16 +3,12 @@
 </head>
 
 <body>
-
-  {{> hello}} {{> loginButtons}}
-
-  {{#if currentUser}}
-      {{> welcome}}
-      {{> scheduler}}
-  {{/if}}
-
-  {{> clockpicker}}
-
+  {{> Template.dynamic template=currentPage}}
+  <ul>
+      <li><button class="clickChangesPage" data-page='clockpicker'>Home</button></li>
+      <li><button class="clickChangesPage" data-page='countdown'>About</button></li>
+  </ul>
+  {{> countdown}}
 </body>
 
 <template name="welcome">
@@ -44,27 +40,23 @@
 </template>
 
 <template name="countdown">
-    <div id="clock"></div>
-    <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default" id="btn-pause">
-            <input type="radio" name="options" id="option2" autocomplete="off">
-            <i class="glyphicon glyphicon-pause"></i>
-            Pause
-        </label>
-
-        <label class="btn btn-default active" id="btn-resume">
-            <input type="radio" name="options" id="option2" autocomplete="off" checked>
-            <i class="glyphicon glyphicon-play"></i>
-            Resume
-        </label>
+    <div>
+        <div id="clock"></div>
     </div>
 </template>
 
+<template name="stopwatch">
+    <div id="stopwatch"></div>
+
+</template>
+
 <template name="clockpicker">
-    <div class="input-group clockpicker">
-        <input type="text" class="form-control" value="09:30">
-    <span class="input-group-addon">
-        <span class="glyphicon glyphicon-time"></span>
-    </span>
-    </div>
+    <form class="clockpickerform">
+        <div class="input-group clockpicker">
+            <input name="time" type="text" class="form-control" value="13:15" required>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+        </div>
+    </form>
 </template>

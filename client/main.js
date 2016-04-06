@@ -1,8 +1,13 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-import { Tasks } from '../imports/api/tasks.js';
-import '../imports/startup/accounts-config.js';
+import { Template } from 'meteor/templating'
+import { ReactiveVar } from 'meteor/reactive-var'
+import { Blaze } from 'meteor/blaze'
+import { Session } from 'meteor/session'
+import { Tasks } from '../imports/api/tasks.js'
+
+import '../imports/countdown/jquery.countdown.js'
+import '../imports/startup/accounts-config.js'
 import './main.html';
+
 
 Template.welcome.helpers({
   username: function(){
@@ -29,9 +34,8 @@ Template.hello.events({
 });
 
 Template.scheduler.onRendered(function(){
-
   // A hack that stores userId to the event that user specifies
-  scheduler.attachEvent("onEventSave",function(id,ev,is_new){
+  scheduler.attachEvent("onEventSave",function(id,ev){
     ev.userId = Meteor.userId();
     return true;
   });
@@ -48,38 +52,68 @@ Template.scheduler.onDestroyed(function(){
 });
 
 Template.countdown.onRendered(function(){
-
-    var clock = $("#clock");
-    var ev;
-
-   function initializeCountdown(timeStamp){
-       clock.countdown(new Date(timeStamp), function(event) {
-           if(event.offset.hours != 0){
-               $(this).html(event.strftime('%-H hour%!H:s; %-M minute%!M:s; %-S second%!S:s;'));
-           }
-           else if (event.offset.minutes != 0){
-               $(this).html(event.strftime('%-M minute%!M:s; %-S second%!S:s;'));
-           }
-           else{
-               $(this).html(event.strftime('%-S second%!S:s;'));
-           }
-           ev = event;
-       });
-   }
-
-    $('#btn-pause').click(function() {
-        clock.countdown('pause');
-    });
-
-    $('#btn-resume').click(function() {
-        initializeCountdown(new Date().valueOf() +
-            1000 * (ev.offset.hours*60*60 + ev.offset.minutes*60 + ev.offset.seconds));
-        clock.countdown('resume');
-    });
-
-    initializeCountdown(new Date().valueOf() + 65 * 1000);
+    var fiveSeconds = new Date().getTime() + 5000;
+    $('#clock').countdown(fiveSeconds, {elapse: true})
+    .on('update.countdown', function(event) {
+           var $this = $(this);
+           if (event.elapsed) {
+                 $this.html(event.strftime('After end: <span>%H:%M:%S</span>'));
+               } else {
+                 $this.html(event.strftime('To end: <span>%H:%M:%S</span>'));
+               }
+         });
 });
 
 Template.clockpicker.onRendered(function(){
-    $('.clockpicker').clockpicker();
+    $('.clockpicker').clockpicker({
+        donetext: '',
+        autoclose : true,
+        default: "13:15"
+    });
+});
+
+Template.clockpicker.events({
+    'submit .clockpickerform'(event){}
+});
+
+Session.setDefault('page', 'clockpicker');
+
+Template.body.helpers({
+    currentPage: function(page){
+        return Session.get('page')
+    }
+});
+
+Template.body.events({
+    'click .clickChangesPage': function(event, template){
+        Session.set('page', event.currentTarget.getAttribute('data-page'))
+    }
+});
+
+Template.stopwatch.onRendered(function(){
+
+    var clock = $("#stopwatch");
+    var time_elapsed = 0;
+    var start_timeStamp = new Date().valueOf();
+
+    function initializeCountdown(timeStamp){
+
+        clock.countdown(new Date(timeStamp), function(event) {
+            if(event.offset.hours != 0){
+                $(this).html(event.strftime('%-H hour%!H:s; %-M minute%!M:s; %-S second%!S:s;'));
+            }
+            else if (event.offset.minutes != 0){
+                $(this).html(event.strftime('%-M minute%!M:s; %-S second%!S:s;'));
+            }
+            else{
+                $(this).html(event.strftime('%-S second%!S:s;'));
+            }
+            time_elapsed = event.timeStamp - start_timeStamp;
+            console.log(time_elapsed);
+            //initializeCountdown(new Date().valueOf() + time_elapsed);
+        });
+
+    }
+
+    initializeCountdown(new Date().valueOf() + 5 * 1000);
 });

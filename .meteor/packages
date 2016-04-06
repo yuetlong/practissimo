@@ -24,6 +24,6 @@ dhtmlx:scheduler-data
 accounts-ui
 accounts-password
 twbs:bootstrap
-andrasph:clockpicker
 session
 remcoder:chronos
+momentjs:moment

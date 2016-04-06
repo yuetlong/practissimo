@@ -1,10 +1,16 @@
 <template name="clockpicker">
     <form class="clockpickerform">
         <div class="input-group clockpicker">
-            <input name="time" type="text" class="form-control" value="13:15" required>
+            <input name="time" id="time" type="text" class="form-control" required>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
         </div>
     </form>
+    <div id="clock1"></div>
+    <div id="clock2"></div>
+
+    <div>Listening to audio:
+        <span id="switch"></span>
+    </div>
 </template>

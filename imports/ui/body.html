@@ -1,6 +1,10 @@
 <body>
     {{> loginButtons}}
+
+    {{#if currentUser}}
+        {{> scheduler}}
+
+    {{/if}}
+
     {{> clockpicker}}
-    {{> scheduler}}
-    {{> timer}}
 </body>

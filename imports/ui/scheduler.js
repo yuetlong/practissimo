@@ -11,7 +11,7 @@ Template.scheduler.onRendered(function(){
         return true;
     });
 
-    scheduler.init("scheduler_here", new Date(),"month");
+    scheduler.init("scheduler_here", new Date(),"week");
 
     //Init dhtmlxScheduler data adapter.
     scheduler.meteor(Tasks.find({userId: Meteor.userId()}), Tasks);

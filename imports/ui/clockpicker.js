@@ -3,13 +3,11 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
 
 import '../clockpicker/jquery-clockpicker.min.js'
-import '../countdown/jquery.countdown.js'
 import './clockpicker.html'
-
+import './main.js'
 
 Template.clockpicker.onRendered(function(){
 
-    $.getScript('./main.js');
     var cp = $(".clockpicker");
 
     cp.clockpicker({
@@ -46,16 +44,15 @@ var initializeTimers = function(timestamp){
     function startCounting(){
         $("#timeElapsed").html(timeElapsed.humanize());
         $("#timeRemains").html(timeRemains.humanize());
-        if(document.getElementById("switch").innerHTML === 'Practicing'){
+        if ($("#switchAudio").hasClass("practicing")){
             timeElapsed.add(interval);
+            console.log(1);
         }
         timeRemains.subtract(interval);
 
         if(timeRemains.unix == 0){
             clearInterval(tid);
         }
-
-        console.log(timeElapsed.asSeconds(), timeRemains.asSeconds());
     }
 
 

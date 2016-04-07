@@ -73,11 +73,13 @@ function drawLoop( time ) {
     //canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
     if (meter.checkClipping()){
-        document.getElementById("switchAudio").innerHTML = 'Practicing';
+        $("#switchAudio").addClass("practicing");
+        $("#switchAudio").removeClass("idling");
         console.log('something');
     }
     else{
-        document.getElementById("switchAudio").innerHTML ='Idling';
+        $("#switchAudio").addClass("idling");
+        $("#switchAudio").removeClass("practicing");
         console.log('crap');
     }
 

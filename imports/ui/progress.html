@@ -1,0 +1,16 @@
+<template name="progress">
+    <div class="container">
+        <header>
+            <h1>My Progress</h1>
+        </header>
+    <ul>
+        {{#each tasks}}
+            {{> task}}
+        {{/each}}
+    </ul>
+    </div>
+</template>
+
+<template name="task">
+    <li>{{text}}</li>
+</template>

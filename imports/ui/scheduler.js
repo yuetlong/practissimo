@@ -10,7 +10,6 @@ Template.scheduler.onRendered(function(){
         ev.userId = Meteor.userId();
         return true;
     });
-
     scheduler.init("scheduler_here", new Date(),"week");
 
     //Init dhtmlxScheduler data adapter.

@@ -75,12 +75,10 @@ function drawLoop( time ) {
     if (meter.checkClipping()){
         $("#switchAudio").addClass("practicing");
         $("#switchAudio").removeClass("idling");
-        console.log('something');
     }
     else{
         $("#switchAudio").addClass("idling");
         $("#switchAudio").removeClass("practicing");
-        console.log('crap');
     }
 
     // draw a bar based on the current volume

@@ -3,6 +3,7 @@ import { Session } from 'meteor/session'
 
 import './scheduler.js'
 import './clockpicker.js'
+import './progress.js'
 import './body.html'
 
 Template.main_menu.events({
@@ -11,7 +12,6 @@ Template.main_menu.events({
         Session.set('showButtons', true);
         Session.set('newWindow', false);
     }
-
 });
 
 Template.main_menu.helpers({

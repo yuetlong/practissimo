@@ -2,7 +2,7 @@
     {{#animate type="rubberBand" delay="200"}}
         <h1 class="logo">Practicissimo</h1>
     {{/animate}}
-    {{#transition in="zoomIn" out="zoomOut"}}
+    {{#transition in="zoomIn"}}
         {{> Template.dynamic template=currentPage}}
     {{/transition}}
     <span id="switchAudio"></span>
@@ -53,6 +53,7 @@
 <template name="showProgress">
     <div class="view_container">
         <p>showing progress</p>
+        {{> progress}}
         <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
     </div>
 </template>

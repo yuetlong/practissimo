@@ -1,38 +1,56 @@
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
-
+import { Scores } from '../api/scores.js'
+import { Meteor } from 'meteor/meteor'
+import '../clockpicker/jquery-clockpicker.min.js'
 import './clockpicker.html'
 import './../audio_detection/main.js'
+
+var timerIsRunning = false;
+var scoreRecordId;
 
 Template.clockpicker.onRendered(function(){
 
     var cp = $(".clockpicker");
 
-    cp.clockpicker({
-        donetext: 'Let\'s start practice!',
-        autoclose : false,
-        default: 'now',
-        fromnow: 60000,
-        afterDone:function(){
-            var targetTimeStr = moment().format('YYYY\/MM\/DD ')
-                + $("#time").val()
-                + moment().format(':ss');
 
-            var timestamp = moment(targetTimeStr,"YYYY\/MM\/DD HH:mm:ss");
+    if (timerIsRunning == false){
+        cp.clockpicker({
+            donetext: 'Let\'s start practice!',
+            autoclose : false,
+            default: 'now',
+            fromnow: 60000,
+            afterDone:function(){
+                var targetTimeStr = moment().format('YYYY\/MM\/DD ')
+                    + $("#time").val()
+                    + moment().format(':ss');
 
-            if (timestamp.isBefore(moment())){
-                timestamp.add(1,'days');
+                var timestamp = moment(targetTimeStr,"YYYY\/MM\/DD HH:mm:ss");
+
+                if (timestamp.isBefore(moment())){
+                    timestamp.add(1,'days');
+                }
+
+                initializeTimers(timestamp);
+
+                Scores.insert({
+                    userId: Meteor.userId(),
+                    score: 0,
+                    startDate: new Date()
+                }, function(err, _id){
+                    scoreRecordId = _id;
+                });
+
+
+                $(".clockpickerform").hide();
+                timerIsRunning = true;
             }
-
-            initializeTimers(timestamp);
-
-            cp.html("");
-            cp.clockpicker('remove');
-        }
-    });
+        });
+    } else{
+        $(".clockpickerform").hide();
+    }
 });
-
 
     var initializeTimers = function(timestamp) {
 
@@ -82,7 +100,7 @@ Template.clockpicker.onRendered(function(){
             timeRemainsInHours = timeRemains.hours();
 
             if (timeRemainsInHours > 1) {
-                te("You have about " + timeRemainsInHours + " hours and " + timeRemainsInMinutes + "left.");
+                te("You have about " + timeRemainsInHours + " hours and " + timeRemainsInMinutes + " minutes left.");
             }
             else if (timeRemainsInHours == 1) {
                 te("You have about an hour left.");
@@ -99,39 +117,33 @@ Template.clockpicker.onRendered(function(){
 
             if ($("#switchAudio").hasClass("practicing")) {
                 timeElapsed.add(interval);
+                Scores.update
+
             }
 
             timeRemains.subtract(interval);
 
             if (Math.floor(timeRemains.asSeconds()) == 0) {
+
                 clearInterval(tid);
-                te("Times up!");
+
+                te("Times up! You did great!");
+
+                var totalPoints = timeElaspedInHours * 3600 + timeElaspedInMinutes * 60 + timeElaspedInSeconds;
+
+                tr("You earned " + totalPoints + " points!");
+
+                timerIsRunning = false;
             }
         }
     };
 
+var insertScoreToDB = function(){
+    Scores.insert({
+        userId: Meteor.userId(),
+        score: 0,
+        startDate: new Date()
+    }, function(err, _id){
 
-    /*
-    clock1.countdown(new Date().valueOf(), {elapse: true})
-        .on('update.countdown', function(event) {
-            $(this).html(event.strftime('Practice time: <span>%H:%M:%S</span>'));
-        });
-    $("#clock2").countdown(timestamp)
-        .on('update.countdown', function(event){
-            $(this).html(event.strftime('Remaining time: <span>%H:%M:%S</span>'));
-        })
-        .on('finish.countdown', function(event){
-            $(this).html(event.strftime('Remaining time: <span>%H:%M:%S</span>'));
-        });
-    // invisible, set to monitor html text
-    $('#clock3').countdown(timestamp)
-        .on('update.countdown', function(event){
-            if (document.getElementById("switch").innerHTML === 'Idling'){
-            }
-            else{
-                initMoment.add(1000);
-                console.log(initMoment.seconds());
-                $("#timeElapsed").html(initMoment.seconds());
-            }
-        })
-    */
+    });
+};

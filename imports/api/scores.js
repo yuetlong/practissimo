@@ -1,3 +1,3 @@
-/**
- * Created by yuetlong on 4/7/16.
- */
+import { Mongo } from 'meteor/mongo';
+
+export const Scores = new Mongo.Collection("scores");

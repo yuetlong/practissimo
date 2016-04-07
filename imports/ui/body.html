@@ -1,0 +1,66 @@
+<body>
+    {{#animate type="rubberBand" delay="200"}}
+        <h1 class="logo">Practicissimo</h1>
+    {{/animate}}
+    {{#transition in="zoomIn" out="zoomOut"}}
+        {{> Template.dynamic template=currentPage}}
+    {{/transition}}
+
+</body>
+
+<template name="loginwrapper">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="login">
+            {{> loginButtons}}
+        </div>
+    </div>
+</template>
+
+<template name="main_menu">
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="start" value="Start" data-page="startPractice"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="schedule" value="Schedule" data-page="scheduler"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="progress" value="Progress" data-page="showProgress"/>
+        </p>
+        <p>
+            <input type="button" class="btn btn-custom btn-block" id="optons" value="Options" data-page="showOptions"/>
+        </p>
+    </div>
+    {{> loginwrapper}}
+</template>
+
+<template name="startPractice">
+    <div class="view_container">
+        <p>showing practice</p>
+        {{> clockpicker}}
+        <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+    </div>
+</template>
+
+<template name="showSchedule">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+
+    </div>
+</template>
+
+<template name="showProgress">
+    <div class="view_container">
+        <p>showing progress</p>
+        <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+    </div>
+</template>
+
+<template name="showOptions">
+    <div class="view_container">
+        <p>showing options</p>
+        <input type="button" class="btn btn-warning" id="switch" value="Switch" data-page="main_menu"/>
+    </div>
+</template>
+

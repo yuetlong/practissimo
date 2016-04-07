@@ -49,7 +49,6 @@ Template.scheduler.onDestroyed(function(){
   scheduler.clearAll();
 });
 
-
 Template.main_menu.events({
   'click #start'(event){
     //event.preventDefault();

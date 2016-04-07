@@ -17,6 +17,7 @@ caching-compiler@1.0.2
 caching-html-compiler@1.0.4
 callback-hook@1.0.6
 check@1.1.2
+coffeescript@1.0.15
 ddp@1.2.3
 ddp-client@1.2.3
 ddp-common@1.2.3
@@ -54,6 +55,7 @@ mobile-experience@1.0.2
 mobile-status-bar@1.0.10
 modules@0.5.1
 modules-runtime@0.6.1
+momentjs:moment@2.12.0
 mongo@1.1.5
 mongo-id@1.0.2
 npm-bcrypt@0.7.8_2
@@ -66,6 +68,7 @@ rate-limit@1.0.2
 reactive-dict@1.1.5
 reactive-var@1.0.7
 reload@1.1.6
+remcoder:chronos@0.3.1
 retry@1.0.5
 routepolicy@1.0.8
 service-configuration@1.0.7
@@ -79,8 +82,10 @@ standard-minifier-js@1.0.4
 templating@1.1.7
 templating-tools@1.0.2
 tracker@1.0.11
+twbs:bootstrap@3.3.6
 ui@1.0.9
 underscore@1.0.6
 url@1.0.7
 webapp@1.2.6
 webapp-hashing@1.0.7
+webtempest:animate@0.1.9

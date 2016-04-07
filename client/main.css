@@ -1,1 +1,108 @@
+
+/* CSS for main page */
+
+/*
+    KIT - SELF NOTES:
+        Black:  #282d48
+        Blue:   #5d698a
+        Cyan:   #95d9eb
+        Orange: #f3c6b8
+        Red:    #e592a2
+    END NOTES
+/*
+
+/* Get fucking bodied */
+body{
+    background-color: #95d9eb;
+}
+
+/* Keeps buttons similar sizes with padding */
+/* KIT: Resize buttons to the size of the browser: */
+/* http://stackoverflow.com/questions/19934647/resize-buttons-responsively-in-bootstrap */
+@media (min-width: 500px) and (max-width: 1920px){
+    .btn-block, #start{
+        padding: 10px;
+        left: 10px;
+
+
+    }
+
+    /* Stylizing buttons and giving them transitions */
+    /* KIT: Looking at following links for transitioning between bigger and smaller size browsers */
+    /* https://bootstrapbay.com/blog/css-transitions-buttons */
+    /* https://css-tricks.com/almanac/properties/t/transition/ */
+    .btn-custom{
+        background: #e592a2;
+        color: #ffffff;
+        display: block;
+        font-size: 70px;
+        overflow: hidden;
+
+
+        /*Rounded Corners*/
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+
+        /*Gradient*/
+        /* KIT: IE10 (the first stable version of IE to support transition) does not require the -ms- prefix. */
+        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+        /* background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); */
+        background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
+        /* CSS Transition: */
+        /* */
+        -webkit-transition: All 0.5s ease-in-out;
+        -moz-transition: All 0.5s ease-in-out;
+        -o-transition: All 0.5s ease-in-out;
+        /*-ms-transition: All 0.5s ease;*/
+        transition: All 0.5s ease;
+    }
+}
+
+/*Sign in dropdown */
+#login-sign-in-link{
+    border-radius: 30%;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.view_container{
+    background-color: #ffffff;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width:80%;
+    height:500px;
+}
+
+#login-dropdown-list{
+    color: white;
+    background-color: #e592a2;
+    font-size: 20px;
+
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+/* Sign in button */
+.login {
+    color: white;
+    background-color: #e592a2;
+
+    text-align: center;
+    padding: 5px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
 /* CSS declarations go here */
+.clockpicker {
+    width: 200px;
+}
+

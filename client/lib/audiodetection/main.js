@@ -73,11 +73,12 @@ function drawLoop( time ) {
     //canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
     // check if we're currently clipping
-    if (meter.checkClipping())
-        document.getElementById("switch").innerHTML = 'true';
-    else
-        document.getElementById("switch").innerHTML ='false';
-            
+    if (meter.checkClipping()){
+        document.getElementById("switch").innerHTML = 'Practicing';
+    }
+    else{
+        document.getElementById("switch").innerHTML ='Idling';
+    }
 
     // draw a bar based on the current volume
     //canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);

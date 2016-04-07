@@ -1,8 +1,12 @@
-
-/* CSS for main page */
+/******************************************************************/
+/*                        PRACTISSIMO                             */
+/* Author: Jasmine Moran                                          */
+/* Description: CSS page for Practissimo practice tool for music  */
+/*                                                                */
+/******************************************************************/
 
 /*
-    KIT - SELF NOTES:
+    NOTE:
         Black:  #282d48
         Blue:   #5d698a
         Cyan:   #95d9eb
@@ -11,55 +15,126 @@
     END NOTES
 /*
 
-/* Get fucking bodied */
+/**************************/
+/*                        */
+/*       Main.html        */
+/*                        */
+/**************************/
+
+/* Main page - "Get fucking bodied" */
 body{
     background-color: #95d9eb;
 }
 
+/* NOTE: Shapes! I found them. Somewhere... */
+/* https://css-tricks.com/examples/ShapesOfCSS/ */
+h1{
+  background: #282d48;
+  color: white;
+  font-size: 50px;
+  border-radius: 100em;
+
+  text-align: center;
+  margin-left: 250px;
+  margin-right: 250px;
+
+  /* Gradient */
+  /* NOTE: IE10 (the first stable version of IE to support transition) does not require the -ms- prefix. */
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  /* background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); */
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+}
+
+/* Main Logo */
+.logo{
+  background: #282d48;
+  color: white;
+  font-size: 100px;
+  padding: 2px;
+
+  margin-top: 25px;
+  margin-left: 250px;
+  margin-bottom: 25px;
+  margin-right: 250px;
+
+  border-radius: 100em;
+
+  text-align: center;
+  position: relative;
+}
+
+/* Buttons! - "What does this button dooooooo?" */
+
 /* Keeps buttons similar sizes with padding */
-/* KIT: Resize buttons to the size of the browser: */
+/* NOTE: Resize buttons to the size of the browser: */
 /* http://stackoverflow.com/questions/19934647/resize-buttons-responsively-in-bootstrap */
 @media (min-width: 500px) and (max-width: 1920px){
-    .btn-block, #start{
-        padding: 10px;
-        left: 10px;
+  .btn-block, #start{
+    padding: 10px;
+    left: 10px;
+  }
 
+  /* Stylizing buttons and giving them transitions */
+  /* NOTE: Looking at following links for transitioning between bigger and smaller size browsers */
+  /* https://bootstrapbay.com/blog/css-transitions-buttons */
+  /* https://css-tricks.com/almanac/properties/t/transition/ */
+  .btn-custom{
+    background: #e592a2;
+    color: #ffffff;
+    font-size: 70px;
 
-    }
+    display: block;
+    overflow: hidden;
 
-    /* Stylizing buttons and giving them transitions */
-    /* KIT: Looking at following links for transitioning between bigger and smaller size browsers */
-    /* https://bootstrapbay.com/blog/css-transitions-buttons */
-    /* https://css-tricks.com/almanac/properties/t/transition/ */
-    .btn-custom{
-        background: #e592a2;
-        color: #ffffff;
-        display: block;
-        font-size: 70px;
-        overflow: hidden;
+    /*Rounded Corners*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
 
+    /*Gradient*/
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 
-        /*Rounded Corners*/
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        border-radius: 15px;
+    /* CSS Transition: */
+    -webkit-transition: All 0.5s ease-in-out;
+    -moz-transition: All 0.5s ease-in-out;
+    -o-transition: All 0.5s ease-in-out;
+    /*-ms-transition: All 0.5s ease;*/
+    transition: All 0.5s ease;
+  }
+}
 
-        /*Gradient*/
-        /* KIT: IE10 (the first stable version of IE to support transition) does not require the -ms- prefix. */
-        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-        /* background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); */
-        background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+/* Back button */
+#switch{
+  background-color: #f3c6b8;
+  color: black;
+  font-size: 25px;
+  margin-top: 25px;
+}
 
-        /* CSS Transition: */
-        /* */
-        -webkit-transition: All 0.5s ease-in-out;
-        -moz-transition: All 0.5s ease-in-out;
-        -o-transition: All 0.5s ease-in-out;
-        /*-ms-transition: All 0.5s ease;*/
-        transition: All 0.5s ease;
-    }
+/* Sign in button */
+.login {
+  color: white;
+  background-color: #e592a2;
+  text-align: center;
+  padding: 10px;
+
+  /*Rounded Corners*/
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+
+  /* Gradient */
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  /* background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); */
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
 }
 
 /*Sign in dropdown */
@@ -68,41 +143,61 @@ body{
     color: #ffffff;
     font-size: 30px;
 }
+#login-dropdown-list{
+    color: black;
+    background-color: #f3c6b8;
+    font-size: 20px;
+    position: relative;
+    padding-bottom: 50px;
 
+    margin: 15px;
+
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+#login-email{
+  color:black;
+}
+
+/* Container - Part of Practice Timer, Progress Page, and Options*/
 .view_container{
     background-color: #ffffff;
+    font-size: 30px;
+    padding: 50px;
+
     margin: 0 auto;
-    position: relative;
     overflow: hidden;
+    position: relative;
     text-align: center;
+
     width:80%;
     height:500px;
+
+    /*Rounded Corners*/
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
 }
 
-#login-dropdown-list{
-    color: white;
-    background-color: #e592a2;
-    font-size: 20px;
-
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+/* Practice Timer */
+.clockpickerform{
+  width: 200px;
+  margin: 0 auto;
 }
 
-/* Sign in button */
-.login {
-    color: white;
-    background-color: #e592a2;
+/* Progress Page */
 
-    text-align: center;
-    padding: 5px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-}
+/* Options */
+
+/**************************/
+/*                        */
+/*    clockpicker.html    */
+/*                        */
+/**************************/
 
 /* CSS declarations go here */
 .clockpicker {
+    margin: 0 auto;
     width: 200px;
 }
-

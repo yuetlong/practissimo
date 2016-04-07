@@ -117,7 +117,6 @@ Template.clockpicker.onRendered(function(){
 
             if ($("#switchAudio").hasClass("practicing")) {
                 timeElapsed.add(interval);
-                Scores.update
 
             }
 

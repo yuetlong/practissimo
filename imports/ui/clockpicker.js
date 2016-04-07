@@ -6,9 +6,10 @@ import '../clockpicker/jquery-clockpicker.min.js'
 import '../countdown/jquery.countdown.js'
 import './clockpicker.html'
 
-import '../../client/lib/audiodetection/main.js'
 
 Template.clockpicker.onRendered(function(){
+
+    $.getScript('./main.js');
     var cp = $(".clockpicker");
 
     cp.clockpicker({

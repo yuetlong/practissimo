@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating'
 import { Session } from 'meteor/session'
 
-import './clockpicker.js'
 import './scheduler.js'
-
+import './clockpicker.js'
 import './body.html'
 
 Template.main_menu.events({

@@ -72,12 +72,13 @@ function drawLoop( time ) {
     // clear the background
     //canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
-    // check if we're currently clipping
     if (meter.checkClipping()){
-        document.getElementById("switch").innerHTML = 'Practicing';
+        document.getElementById("switchAudio").innerHTML = 'Practicing';
+        console.log('something');
     }
     else{
-        document.getElementById("switch").innerHTML ='Idling';
+        document.getElementById("switchAudio").innerHTML ='Idling';
+        console.log('crap');
     }
 
     // draw a bar based on the current volume

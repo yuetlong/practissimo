@@ -2,9 +2,8 @@ import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
 
-import '../clockpicker/jquery-clockpicker.min.js'
 import './clockpicker.html'
-import './main.js'
+import './../audio_detection/main.js'
 
 Template.clockpicker.onRendered(function(){
 

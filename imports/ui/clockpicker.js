@@ -22,8 +22,8 @@ Template.clockpicker.onRendered(function(){
 
             var timestamp = moment(targetTimeStr,"YYYY\/MM\/DD HH:mm:ss");
 
-            if (timestamp < moment().unix()){
-                timestamp += 86400000; // add 24 hours
+            if (timestamp.isBefore(moment())){
+                timestamp.add(1,'days');
             }
 
             initializeTimers(timestamp);
@@ -34,27 +34,82 @@ Template.clockpicker.onRendered(function(){
     });
 });
 
-var initializeTimers = function(timestamp){
 
-    var timeElapsed = moment.duration(0,'seconds');
-    var timeRemains = moment.duration(2,'minutes');
-    var interval = 200;
-    var tid = setInterval (startCounting, interval);
+    var initializeTimers = function(timestamp) {
 
-    function startCounting(){
-        $("#timeElapsed").html(timeElapsed.humanize());
-        $("#timeRemains").html(timeRemains.humanize());
-        if ($("#switchAudio").hasClass("practicing")){
-            timeElapsed.add(interval);
-            console.log(1);
+        var timeElapsed = moment.duration(0, 'seconds');
+        var timeRemains = moment.duration(timestamp.diff(moment()));
+        var interval = 200;
+        var tid = setInterval(startCounting, interval);
+
+        var timeElaspedInSeconds;
+        var timeElaspedInMinutes;
+        var timeElaspedInHours;
+
+        var timeRemainsInMinutes;
+        var timeRemainsInHours;
+
+        function te(string) {
+            $("#timeElapsed").html(string);
         }
-        timeRemains.subtract(interval);
 
-        if(timeRemains.unix == 0){
-            clearInterval(tid);
+        function tr(string) {
+            $("#timeRemains").html(string);
         }
-    }
 
+        function startCounting() {
+
+            timeElaspedInSeconds = timeElapsed.seconds();
+            timeElaspedInMinutes = timeElapsed.minutes();
+            timeElaspedInHours = timeElapsed.hours();
+
+            if (timeElaspedInHours > 1) {
+                tr("You've practiced for " + timeElaspedInHours + " hours and " + timeElaspedInMinutes + " minutes! That's amazing!");
+            }
+            else if (timeElaspedInHours == 1) {
+                tr("You've practiced for an hour and " + timeElaspedInMinutes + " minutes!");
+            }
+            else if (timeElaspedInMinutes > 1) {
+                tr("You've practiced for " + timeElaspedInMinutes + " minutes! Keep going!");
+            }
+            else if (timeElaspedInMinutes == 1) {
+                tr("A minute and " + timeElaspedInSeconds + " in! Good job!");
+            }
+            else {
+                tr("Relax! Play anything you'd like! You're " + timeElaspedInSeconds + " seconds in.");
+            }
+
+            timeRemainsInMinutes = timeRemains.minutes();
+            timeRemainsInHours = timeRemains.hours();
+
+            if (timeRemainsInHours > 1) {
+                te("You have about " + timeRemainsInHours + " hours and " + timeRemainsInMinutes + "left.");
+            }
+            else if (timeRemainsInHours == 1) {
+                te("You have about an hour left.");
+            }
+            else if (timeRemainsInMinutes > 1) {
+                te("You have about " + timeRemainsInMinutes + " minutes left.");
+            }
+            else if (timeRemainsInMinutes == 1) {
+                te("You have about a minute left.");
+            }
+            else {
+                te("Less than a minute!");
+            }
+
+            if ($("#switchAudio").hasClass("practicing")) {
+                timeElapsed.add(interval);
+            }
+
+            timeRemains.subtract(interval);
+
+            if (Math.floor(timeRemains.asSeconds()) == 0) {
+                clearInterval(tid);
+                te("Times up!");
+            }
+        }
+    };
 
 
     /*
@@ -81,4 +136,3 @@ var initializeTimers = function(timestamp){
             }
         })
     */
-};

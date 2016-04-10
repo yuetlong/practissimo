@@ -10,6 +10,12 @@ import '../pitchdetection/pitchdetect.js'
 var timerIsRunning = false;
 var scoreRecordId;
 
+Template.soundIndicator.helpers({
+    hasSound: function(){
+        return Session.get('noteElem') !== '-';
+    }
+});
+
 Template.clockpicker.onRendered(function(){
 
     var cp = $(".clockpicker");
@@ -19,7 +25,7 @@ Template.clockpicker.onRendered(function(){
         cp.clockpicker({
             donetext: 'Let\'s start practice!',
             
-            autoclose : true,
+            autoclose : false,
             
             default: 'now',
             

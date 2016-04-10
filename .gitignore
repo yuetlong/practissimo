@@ -4,3 +4,5 @@ node_modules
 *~
 .DS_Store
 .babelrc
+*-compiled.js
+*-compiled.js.map

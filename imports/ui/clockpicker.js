@@ -5,7 +5,7 @@ import { Scores } from '../api/scores.js'
 import { Meteor } from 'meteor/meteor'
 import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
-import './../audio_detection/main.js'
+import '../pitchdetection/pitchdetect.js'
 
 var timerIsRunning = false;
 var scoreRecordId;
@@ -121,9 +121,8 @@ Template.clockpicker.onRendered(function(){
                 te("Less than a minute!");
             }
 
-            if ($("#switchAudio").hasClass("practicing")) {
+            if (Session.get('noteElem') !== '-') {
                 timeElapsed.add(interval);
-
             }
 
             timeRemains.subtract(interval);

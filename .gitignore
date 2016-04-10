@@ -1,3 +1,6 @@
 node_modules
 .meteor/local
 .idea
+*~
+.DS_Store
+.babelrc

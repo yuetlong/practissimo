@@ -3,9 +3,9 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
 import { Scores } from '../api/scores.js'
 import { Meteor } from 'meteor/meteor'
-import '../clockpicker/jquery-clockpicker.min.js'
+import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
-import './../audio_detection/main.js'
+import '../pitchdetection/pitchdetect.js'
 
 var timerIsRunning = false;
 var scoreRecordId;
@@ -18,9 +18,15 @@ Template.clockpicker.onRendered(function(){
     if (timerIsRunning == false){
         cp.clockpicker({
             donetext: 'Let\'s start practice!',
-            autoclose : false,
+            
+            autoclose : true,
+            
             default: 'now',
+            
             fromnow: 60000,
+            
+            twelvehour: true,
+
             afterDone:function(){
                 var targetTimeStr = moment().format('YYYY\/MM\/DD ')
                     + $("#time").val()
@@ -115,9 +121,8 @@ Template.clockpicker.onRendered(function(){
                 te("Less than a minute!");
             }
 
-            if ($("#switchAudio").hasClass("practicing")) {
+            if (Session.get('noteElem') !== '-') {
                 timeElapsed.add(interval);
-
             }
 
             timeRemains.subtract(interval);

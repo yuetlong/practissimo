@@ -1,20 +1,39 @@
 <template name="clockpicker">
-  <form class="clockpickerform">
-    <div class="input-group clockpicker">
+  {{> timeForm }}
+  {{> soundIndicator }}
 
-      <input name="time" id="time" type="text" class="form-control" required>
+</template>
+
+<template name="timeForm">
+    <form class="clockpickerform">
+    <p> I want to practice for
+
+
+        {{#unless hoursEqualsZero}}
+            {{hours}} hour{{#unless hoursEqualsOne}}s{{/unless}}
+        {{/unless}}
+
+        {{#unless minutesEqualsZero}}
+            {{minutes}} minute{{#unless minutesEqualsOne}}s{{/unless}}
+        {{/unless}}
+
+        {{#if hoursEqualsZero}}
+            {{#if minutesEqualsZero}}
+                a few moments
+            {{/if}}
+        {{/if}}
+
+        until
+
+        <span class="input-group clockpicker">
+            <input name="time" id="time" type="text" class="form-control" required>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-time"></span>
       </span>
-    </div>
-  </form>
-  <div id="clock1"></div>
-  <div id="clock2"></div>
-  <div id="clock3"></div>
-  <div id="timeElapsed"></div>
-  <div id="timeRemains"></div>
-
-  {{> soundIndicator}}
+        </span>
+    </p>
+        <button>I'm ready!</button>
+    </form>
 
 </template>
 

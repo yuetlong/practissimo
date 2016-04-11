@@ -1,20 +1,76 @@
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
-import { Scores } from '../api/scores.js'
 import { Meteor } from 'meteor/meteor'
+
 import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
 import '../pitchdetection/pitchdetect.js'
 
-var timerIsRunning = false;
-var scoreRecordId;
+Template.timeForm.onCreated(function (){
+    // this is where you set the default values for the form
+    this.hours = new ReactiveVar(1);
+    this.minutes = new ReactiveVar(30);
+});
+
+Template.timeForm.onRendered(function(){
+
+    $(".clockpicker").clockpicker({
+        donetext: 'OK',
+        autoclose : false,
+        default: 'now',
+        fromnow: Template.instance().hours.get() * 1000 * 60 * 60
+        + Template.instance().minutes.get() * 1000 * 60,
+        twelvehour: true
+    });
+});
+
+Template.timeForm.helpers({
+    hours() {
+        return Template.instance().hours.get();
+    },
+    minutes() {
+        return Template.instance().minutes.get();
+    },
+    hoursEqualsZero(){
+        return Template.instance().hours.get() == 0;
+    },
+    hoursEqualsOne(){
+        return Template.instance().hours.get() == 1;
+    },
+    minutesEqualsZero(){
+        return Template.instance().minutes.get() == 0;
+    },
+    minutesEqualsOne(){
+        return Template.instance().minutes.get() == 1;
+    }
+});
+
+Template.timeForm.events({
+    'change .clockpickerform'(event, instance){
+        var endTimeDate = moment($("#time").val(), "hh:mmaa");
+        if (endTimeDate.isBefore(moment())){
+            endTimeDate.add(1,'days');
+        }
+        var duration = moment.duration(endTimeDate.diff(moment()));
+        instance.hours.set(duration.hours());
+        instance.minutes.set(duration.minutes());
+    },
+    'submit' (event){
+        event.preventDefault();
+    },
+    'click button'(event){
+
+    }
+});
 
 Template.soundIndicator.helpers({
     hasSound: function(){
         return Session.get('noteElem') !== '-';
     }
 });
+
+/*
 
 Template.clockpicker.onRendered(function(){
 
@@ -148,6 +204,8 @@ Template.clockpicker.onRendered(function(){
         }
     };
 
+
+
 var insertScoreToDB = function(){
     Scores.insert({
         userId: Meteor.userId(),
@@ -157,3 +215,6 @@ var insertScoreToDB = function(){
 
     });
 };
+
+*/
+

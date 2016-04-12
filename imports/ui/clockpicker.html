@@ -1,20 +1,25 @@
 <template name="clockpicker">
-  {{> timeForm }}
+  {{> Template.dynamic template=currentPage}}
   {{> soundIndicator }}
 
 </template>
 
 <template name="timeForm">
+    {{#if showForm}}
     <form class="clockpickerform">
-    <p> I want to practice for
+    <p> I want to practice
 
+        {{#unless hoursMinutesNotSet}}
+        for
 
         {{#unless hoursEqualsZero}}
-            {{hours}} hour{{#unless hoursEqualsOne}}s{{/unless}}
+            <input type="number" min="0" max="23" step="1" value={{hours}} id="input-hours">
+            hour{{#unless hoursEqualsOne}}s{{/unless}}
         {{/unless}}
 
         {{#unless minutesEqualsZero}}
-            {{minutes}} minute{{#unless minutesEqualsOne}}s{{/unless}}
+            <input type="number" min="0" max="59" step="1" value={{minutes}} id="input-minutes">
+            minute{{#unless minutesEqualsOne}}s{{/unless}}
         {{/unless}}
 
         {{#if hoursEqualsZero}}
@@ -23,18 +28,23 @@
             {{/if}}
         {{/if}}
 
+        {{/unless}}
+
         until
 
         <span class="input-group clockpicker">
-            <input name="time" id="time" type="text" class="form-control" required>
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-time"></span>
-      </span>
+            <input name="time" id="time" type="text" class="form-control" required readonly>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time">
+                </span>
+            </span>
         </span>
     </p>
         <button>I'm ready!</button>
     </form>
-
+    {{/if}}
+        <p id="timeElapsed"></p>
+        <p id="timeRemains"></p>
 </template>
 
 <template name="soundIndicator">

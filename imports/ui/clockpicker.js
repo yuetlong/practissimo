@@ -3,6 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { Session } from 'meteor/session'
 import { Meteor } from 'meteor/meteor'
 import { Blaze  } from 'meteor/blaze'
+import { Scores } from '../api/scores.js'
 
 import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
@@ -68,7 +69,7 @@ Template.soundIndicator.helpers({
     }
 });
 
-var initializeTimers = function(timestamp) {
+var initializeTimers = function(timestamp,hours,minutes) {
 
     var timeElapsed = moment.duration(0, 'seconds');
     var timeRemains = moment.duration(timestamp.diff(moment()));
@@ -81,6 +82,9 @@ var initializeTimers = function(timestamp) {
 
     var timeRemainsInMinutes;
     var timeRemainsInHours;
+
+    var start_time = timeRemains;
+    //capture the time  input by the user before the timer starts
 
     function te(string) {
         $("#timeElapsed").html(string);
@@ -95,6 +99,7 @@ var initializeTimers = function(timestamp) {
         timeElaspedInSeconds = timeElapsed.seconds();
         timeElaspedInMinutes = timeElapsed.minutes();
         timeElaspedInHours = timeElapsed.hours();
+        var start_time = new Date();
 
         if (timeElaspedInHours > 1) {
             tr("You've practiced for " + timeElaspedInHours + " hours and " + timeElaspedInMinutes + " minutes! That's amazing!");
@@ -148,6 +153,9 @@ var initializeTimers = function(timestamp) {
             tr("You earned " + totalPoints + " points!");
 
             timerIsRunning = false;
+
+            //We finished the run, insert results into a database
+            insertScoreToDB(totalPoints, timeElapsed, hours, minutes);
         }
     }
 };
@@ -169,7 +177,10 @@ Template.timeForm.events({
         instance.showForm.set(false);
         initializeTimers(moment()
             .add(instance.hours.get(),"hours")
-            .add(instance.minutes.get(),"minutes"));
+            .add(instance.minutes.get(),"minutes"),
+            instance.hours.get(),
+            instance.minutes.get()
+        );
     },
     'change #input-hours'(event, instance){
         instance.hours.set($("#input-hours").val());
@@ -184,11 +195,19 @@ Template.timeForm.events({
 });
 
 
-var insertScoreToDB = function(){
+var insertScoreToDB = function(scr, prac_time, hr, min){
+    var end_time = new Date();
+    var actual_inMilli = prac_time.asMilliseconds();
+    var time_prac = moment('2000-01-01 00:00:00').add(hr, "hours").add(min, "minutes").format('HH:mm:ss')
+    var actual_prac = moment('2000-01-01 00:00:00').add(actual_inMilli).format('HH:mm:ss');
+
+    var datePracticed = moment(end_time).format('MM/DD/YYYY');
     Scores.insert({
         userId: Meteor.userId(),
-        score: 0,
-        startDate: new Date()
+        score: scr,
+        date: datePracticed,
+        totalTime: time_prac,
+        actualTime: actual_prac
     }, function(err, _id){
 
     });

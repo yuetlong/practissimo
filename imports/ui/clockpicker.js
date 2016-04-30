@@ -21,8 +21,8 @@ Template.clockpicker.helpers({
 
 Template.timeForm.onCreated(function (){
     // this is where you set the default values for the form
-    this.hours = new ReactiveVar();
-    this.minutes = new ReactiveVar();
+    this.hours = new ReactiveVar(1);
+    this.minutes = new ReactiveVar(15);
     this.showForm = new ReactiveVar(true);
 });
 
@@ -100,7 +100,6 @@ var initializeTimers = function(timestamp,hours,minutes) {
         timeElaspedInMinutes = timeElapsed.minutes();
         timeElaspedInHours = timeElapsed.hours();
         var start_time = new Date();
-
         if (timeElaspedInHours > 1) {
             tr("You've practiced for " + timeElaspedInHours + " hours and " + timeElaspedInMinutes + " minutes! That's amazing!");
         }

@@ -19,21 +19,26 @@
 
 <template name="main_menu">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    <p><input type="button" class="btn btn-custom btn-block" id="start" value="Start" data-page="startPractice"/></p>
-    <p><input type="button" class="btn btn-custom btn-block" id="schedule" value="Schedule" data-page="scheduler"/></p>
-    <p><input type="button" class="btn btn-custom btn-block" id="progress" value="Progress" data-page="showProgress"/></p>
-    <p><input type="button" class="btn btn-custom btn-block" id="optons" value="Options" data-page="showOptions"/></p>
+    <p><input type="button" class="btn btn-custom btn-block hvr-wobble-horizontal" id="start" value="Start" data-page="startPractice"/></p>
+    <p><input type="button" class="btn btn-custom btn-block hvr-wobble-horizontal" id="schedule" value="Schedule" data-page="scheduler"/></p>
+    <p><input type="button" class="btn btn-custom btn-block hvr-wobble-horizontal" id="progress" value="Progress" data-page="showProgress"/></p>
+    <p><input type="button" class="btn btn-custom btn-block hvr-wobble-horizontal" id="optons" value="Options" data-page="showOptions"/></p>
   </div>
   {{> loginwrapper}}
+    <img class="mascot" src="/notuke.gif"/>
 </template>
 
 <template name="startPractice">
+
   <div class="view_container" id="script_div">
     <h1>Practice Mode</h1>
     <!--<p>Click below and hit the "Let's start practice!" button!</p> -->
     {{> clockpicker}}
+      <img class='notuke' src="/notuke-play.gif"/>
     <input type="button" class="btn btn-warning" id="switch" value="Back" data-page="main_menu"/>
+
   </div>
+
 </template>
 
 <template name="showSchedule">
@@ -43,7 +48,7 @@
 <template name="showProgress">
   <div class="view_container">
     <h1>Progress</h1>
-    <p>Under construction!</p>
+    {{> progress}}
     <input type="button" class="btn btn-warning" id="switch" value="Back" data-page="main_menu"/>
   </div>
 </template>

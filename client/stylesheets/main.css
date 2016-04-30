@@ -21,9 +21,34 @@
 /*                        */
 /**************************/
 
-/* Main page - "Get fucking bodied" */
+
+/*define our own custom font family*/
+@font-face {
+    font-family: MidoText;
+    src: url(Mido.otf) format("opentype");
+}
+
+/* Main page - "Get ***** bodied" */
 body{
     background-color: #95d9eb;
+    font-family: MidoText;
+    /*background-image: url("big-background.jpg");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;*/
+
+}
+
+.mascot {
+    width: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.notuke{
+    width: 40%;
 }
 
 /* NOTE: Shapes! I found them. Somewhere... */

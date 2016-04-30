@@ -1,16 +1,28 @@
 <template name="progress">
     <div class="container">
-        <header>
-            <h1>My Progress</h1>
-        </header>
-    <ul>
-        {{#each tasks}}
-            {{> task}}
-        {{/each}}
-    </ul>
+    <table class ="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time Practiced</th>
+                <th>Actual Time Practiced</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each scores}}
+                {{> score}}
+            {{/each}}
+        </tbody>
+    </table>
     </div>
 </template>
 
-<template name="task">
-    <li>{{text}}</li>
+<template name="score">
+    <tr>
+        <td>{{date}}</td>
+        <td>{{totalTime}}</td>
+        <td>{{actualTime}}</td>
+        <td>{{score}}</td>
+    </tr>
 </template>

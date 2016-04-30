@@ -1,10 +1,12 @@
 import { Template } from 'meteor/templating';
+
+import { Scores } from '../api/scores.js';
+
 import './progress.html';
 
 Template.progress.helpers({
-    tasks: [
-        { text: 'This is task 1' },
-        { text: 'This is task 2' },
-        { text: 'This is task 3' }
-    ]
+    scores() {
+        return Scores.find();
+
+    }
 });

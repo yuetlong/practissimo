@@ -21,6 +21,20 @@ The goals of application is to add a game to musical practice sessions to help m
 * **Animate.css** - UI functions
 * **Hover.css** - UI functions
 
-##Documentation Notes
+##Tree
+
+├── client
+│   ├── lib
+│   └── stylesheets
+│       └── fonts-mido
+├── imports
+│   ├── api
+│   ├── clockpicker
+│   ├── pitchdetection
+│   ├── startup
+│   └── ui
+├── node_modules
+├── public
+└── server
 
 

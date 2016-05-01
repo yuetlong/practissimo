@@ -9,6 +9,16 @@ import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
 import '../pitchdetection/pitchdetect.js'
 
+/*applications used:
+* moment.js
+*
+* Documentation can be located http://momentjs.com/docs/
+*
+*Clockpicker developed by Y. Leung
+*Progress developed by Z. Wong
+*
+
+*/
 Template.clockpicker.onCreated(function(){
     this.currentPage = new ReactiveVar("timeForm");
 });
@@ -21,6 +31,7 @@ Template.clockpicker.helpers({
 
 Template.timeForm.onCreated(function (){
     // this is where you set the default values for the form
+    // allows the inputs to show on start
     this.hours = new ReactiveVar(1);
     this.minutes = new ReactiveVar(15);
     this.showForm = new ReactiveVar(true);
@@ -69,6 +80,7 @@ Template.soundIndicator.helpers({
     }
 });
 
+//Starts our timer counting up and our timer counting down
 var initializeTimers = function(timestamp,hours,minutes) {
 
     var timeElapsed = moment.duration(0, 'seconds');
@@ -94,6 +106,8 @@ var initializeTimers = function(timestamp,hours,minutes) {
         $("#timeRemains").html(string);
     }
 
+
+    //main function that runs our two counters.  outputs messages based on the time remaining and time elapsed.
     function startCounting() {
 
         timeElaspedInSeconds = timeElapsed.seconds();
@@ -194,10 +208,13 @@ Template.timeForm.events({
 });
 
 
+//grabs information and stores it into the database and formats it nicely.
+//time_prac - grabs the time that the user input
+//actual_prac = grabs the time counted up from the start of the practice session.
 var insertScoreToDB = function(scr, prac_time, hr, min){
     var end_time = new Date();
     var actual_inMilli = prac_time.asMilliseconds();
-    var time_prac = moment('2000-01-01 00:00:00').add(hr, "hours").add(min, "minutes").format('HH:mm:ss')
+    var time_prac = moment('2000-01-01 00:00:00').add(hr, "hours").add(min, "minutes").format('HH:mm:ss');
     var actual_prac = moment('2000-01-01 00:00:00').add(actual_inMilli).format('HH:mm:ss');
 
     var datePracticed = moment(end_time).format('MM/DD/YYYY');

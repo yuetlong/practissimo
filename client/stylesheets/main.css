@@ -2,11 +2,12 @@
 /*                        PRACTISSIMO                             */
 /* Author: Jasmine Moran                                          */
 /* Description: CSS page for Practissimo practice tool for music  */
+/* Update: April 30, 2016                                         */
 /*                                                                */
 /******************************************************************/
 
 /*
-    NOTE:
+    NOTE: Color pallete for website. May change in the future.
         Black:  #282d48
         Blue:   #5d698a
         Cyan:   #95d9eb
@@ -22,13 +23,13 @@
 /**************************/
 
 
-/*define our own custom font family*/
-@font-face {
+/* Define custom font family */
+@font-face{
     font-family: MidoText;
     src: url(Mido.otf) format("opentype");
 }
 
-/* Main page - "Get ***** bodied" */
+/* Main page - "Get bodied" */
 body{
     background-color: #95d9eb;
     font-family: MidoText;
@@ -41,7 +42,7 @@ body{
 
 }
 
-.mascot {
+.mascot{
     width: 50%;
     overflow: hidden;
     float: left;
@@ -113,12 +114,12 @@ h1{
     display: block;
     overflow: hidden;
 
-    /*Rounded Corners*/
+    /* Rounded Corners */
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
 
-    /*Gradient*/
+    /* Gradient */
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
@@ -162,7 +163,7 @@ h1{
 
 }
 
-/*Sign in dropdown */
+/* Sign in dropdown */
 #login-sign-in-link{
     border-radius: 30%;
     color: #ffffff;
@@ -199,7 +200,7 @@ h1{
     width:80%;
     height:800px;
 
-    /*Rounded Corners*/
+    /* Rounded Corners */
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
@@ -222,7 +223,7 @@ h1{
 /**************************/
 
 /* CSS declarations go here */
-.clockpicker {
+.clockpicker{
     margin: 0 auto;
     width: 200px;
 }

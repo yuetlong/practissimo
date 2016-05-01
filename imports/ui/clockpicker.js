@@ -9,6 +9,17 @@ import '../clockpicker/bootstrap-clockpicker.js'
 import './clockpicker.html'
 import '../pitchdetection/pitchdetect.js'
 
+/*applications used:
+* moment.js
+*
+* Documentation can be located http://momentjs.com/docs/
+*
+*Clockpicker developed by YuetLong Leung
+*Progress developed by Zachery Wong
+*
+*/
+
+
 Template.clockpicker.onCreated(function(){
     this.currentPage = new ReactiveVar("timeForm");
 });
@@ -19,12 +30,23 @@ Template.clockpicker.helpers({
     }
 });
 
+/*
+ * When timeform is created, it instantiates variables to reactively store number
+ * of hours and minutes. When other components modify the values of them, the autotracker
+ * inside ReactiveVar fires changes to the view, changing the value on display.
+ */
+
 Template.timeForm.onCreated(function (){
     // this is where you set the default values for the form
+    // allows the inputs to show on start
     this.hours = new ReactiveVar(1);
     this.minutes = new ReactiveVar(15);
     this.showForm = new ReactiveVar(true);
 });
+
+/*
+ * When timeform finishes rendering, it initializes the clockpicker using JQuery.
+ */
 
 Template.timeForm.onRendered(function(){
 
@@ -34,6 +56,12 @@ Template.timeForm.onRendered(function(){
         twelvehour: true
     });
 });
+
+/*
+ * The helpers are the backbones of front end framework logic.
+ * When the value of a reactive variable changes,
+ * the returns of helpers below would change accordingly.
+ */
 
 Template.timeForm.helpers({
     hours() {
@@ -63,11 +91,25 @@ Template.timeForm.helpers({
     }
 });
 
+/*
+ * The sound indicator is the gadget that visualizes sound detection.
+ * The hasSound function below listens to Session variable changes,
+ * published by the sound detector in another folder.
+ */
+
 Template.soundIndicator.helpers({
     hasSound: function(){
         return Session.get('noteElem') !== '-';
     }
 });
+
+/*
+ * This function initializes the timers.
+ * It contains the time duration counters using MomentJS library.
+ * Those counters does not natively change the values themselves.
+ * A global setInterval function changes them instead.
+ * The "timer" that shows duration on view was just JQuery.html edits over time.
+ */
 
 var initializeTimers = function(timestamp,hours,minutes) {
 
@@ -94,6 +136,8 @@ var initializeTimers = function(timestamp,hours,minutes) {
         $("#timeRemains").html(string);
     }
 
+
+    //main function that runs our two counters.  outputs messages based on the time remaining and time elapsed.
     function startCounting() {
 
         timeElaspedInSeconds = timeElapsed.seconds();
@@ -140,7 +184,13 @@ var initializeTimers = function(timestamp,hours,minutes) {
         }
 
         timeRemains.subtract(interval);
-        
+
+        /*
+         * When the time is up, users are notified,
+         * total points are calculated and stored into the database for record.
+         * It also stops the countdown functions from firing.
+         */
+
         if (Math.floor(timeRemains.asSeconds()) < 1) {
 
             clearInterval(tid);
@@ -158,6 +208,13 @@ var initializeTimers = function(timestamp,hours,minutes) {
         }
     }
 };
+
+/*
+ * The timeform event handlers binds the duration and end time display on view together.
+ * Say if a user changes the end time, the first function calculates the time difference,
+ * changes the instance variables according to the result, which changes the view
+ * because it is bound to the helpers. Other functions are serving the same purpose.
+ */
 
 Template.timeForm.events({
     'change .input-group'(event, instance){
@@ -193,11 +250,14 @@ Template.timeForm.events({
     }
 });
 
+//grabs information and stores it into the database and formats it nicely.
+//time_prac - grabs the time that the user input
+//actual_prac = grabs the time counted up from the start of the practice session.
 
 var insertScoreToDB = function(scr, prac_time, hr, min){
     var end_time = new Date();
     var actual_inMilli = prac_time.asMilliseconds();
-    var time_prac = moment('2000-01-01 00:00:00').add(hr, "hours").add(min, "minutes").format('HH:mm:ss')
+    var time_prac = moment('2000-01-01 00:00:00').add(hr, "hours").add(min, "minutes").format('HH:mm:ss');
     var actual_prac = moment('2000-01-01 00:00:00').add(actual_inMilli).format('HH:mm:ss');
 
     var datePracticed = moment(end_time).format('MM/DD/YYYY');

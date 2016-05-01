@@ -6,6 +6,7 @@ import './clockpicker.js'
 import './progress.js'
 import './body.html'
 
+
 Template.main_menu.events({
     'click #start'(event){
         //event.preventDefault();

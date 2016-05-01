@@ -1,3 +1,20 @@
+<!--
+
+Author: Jasmine Moran
+Description: HTML page for Practissimo practice tool for music
+Update: April 30, 2016
+
+-->
+
+<!-- Briefly how <templates> work
+    Everything inside <template> tags is compiled into Meteor templates, which can be included inside HTML.
+    Templates creates a more organized logical structure by making webpages dynamic.  There are many different
+    tags that can be associated with templates to allow more functionality.
+    see this link for more details on Meteor:
+    https://www.meteor.com/tutorials/blaze/templates
+-->
+
+<!-- Body text. Animates the logo. -->
 <body>
     {{#animate type="rubberBand" delay="200"}}
         <h1 class="logo">Practicissimo</h1>
@@ -8,6 +25,8 @@
     <span id="switchAudio"></span>
 </body>
 
+
+<!-- Login Section -->
 <template name="loginwrapper">
   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -17,6 +36,10 @@
   </div>
 </template>
 
+
+<!-- Main menu buttons -->
+<!-- Buttons: Start, Schedule, Progress, Options -->
+<!-- Resizes if window shrinks -->
 <template name="main_menu">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
     <p><input type="button" class="btn btn-custom btn-block hvr-wobble-horizontal" id="start" value="Start" data-page="startPractice"/></p>
@@ -28,31 +51,37 @@
     <img class="mascot" src="/notuke.gif"/>
 </template>
 
+<!-- Timer -->
+<!-- Accesses Clockpicker. This is the main function of the application -->
 <template name="startPractice">
 
   <div class="view_container" id="script_div">
     <h1>Practice Mode</h1>
-    <!--<p>Click below and hit the "Let's start practice!" button!</p> -->
-    {{> clockpicker}}
-      <img class='notuke' src="/notuke-play.gif"/>
+      {{> clockpicker}}
+    <img class='notuke' src="/notuke-play.gif"/>
     <input type="button" class="btn btn-warning" id="switch" value="Back" data-page="main_menu"/>
-
   </div>
 
 </template>
 
+<!-- Schedule -->
+<!-- A basic schedule for setting up dates and times -->
 <template name="showSchedule">
   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6"></div>
 </template>
 
+<!-- Progress table -->
+<!-- A scoreboard that records  date, time limit set, time practiced, and score -->
 <template name="showProgress">
   <div class="view_container">
     <h1>Progress</h1>
-    {{> progress}}
+      {{> progress}}
     <input type="button" class="btn btn-warning" id="switch" value="Back" data-page="main_menu"/>
   </div>
 </template>
 
+<!-- Options -->
+<!-- NOTE: Not currently in use. Plan to use in future. -->
 <template name="showOptions">
   <div class="view_container">
     <h1>Options</h1>

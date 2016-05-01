@@ -58,7 +58,7 @@ Template.timeForm.onRendered(function(){
 });
 
 /*
- * The helpers are the backbones of front end frameowrk logic.
+ * The helpers are the backbones of front end framework logic.
  * When the value of a reactive variable changes,
  * the returns of helpers below would change accordingly.
  */
@@ -94,7 +94,7 @@ Template.timeForm.helpers({
 /*
  * The sound indicator is the gadget that visualizes sound detection.
  * The hasSound function below listens to Session variable changes,
- * published by the sound detecter in another folder.
+ * published by the sound detector in another folder.
  */
 
 Template.soundIndicator.helpers({
@@ -105,7 +105,7 @@ Template.soundIndicator.helpers({
 
 /*
  * This function initializes the timers.
- * It contains the time duration counters using MmomentJS library.
+ * It contains the time duration counters using MomentJS library.
  * Those counters does not natively change the values themselves.
  * A global setInterval function changes them instead.
  * The "timer" that shows duration on view was just JQuery.html edits over time.
@@ -213,7 +213,7 @@ var initializeTimers = function(timestamp,hours,minutes) {
  * The timeform event handlers binds the duration and end time display on view together.
  * Say if a user changes the end time, the first function calculates the time difference,
  * changes the instance variables according to the result, which changes the view
- * because it is binded to the helpers. Other functions are serving the same purpose.
+ * because it is bound to the helpers. Other functions are serving the same purpose.
  */
 
 Template.timeForm.events({

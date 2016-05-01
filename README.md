@@ -24,15 +24,15 @@ The goals of application is to add a game to musical practice sessions to help m
 ##Tree
 
 ├── client
-│   ├── lib
-│   └── stylesheets
-│       └── fonts-mido
+│   ├── lib
+│   └── stylesheets
+│       └── fonts-mido
 ├── imports
-│   ├── api
-│   ├── clockpicker
-│   ├── pitchdetection
-│   ├── startup
-│   └── ui
+│   ├── api
+│   ├── clockpicker
+│   ├── pitchdetection
+│   ├── startup
+│   └── ui
 ├── node_modules
 ├── public
 └── server
